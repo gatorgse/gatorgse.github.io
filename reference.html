@@ -1,0 +1,69 @@
+
+<html>
+<head> 
+<title> Pong </title> 
+<script src="https://simplycoding.org/files/simplyjs/simply.js"></script> 
+<script> 
+function start(){
+  sjs.open("target",400,300); 
+  
+  var ball = new sjs.Image("https://simplycoding.org/files/Game Design/Pong/Images/golfball.png");
+  ball.type = "ball";
+  ball.setSize(55,55);
+  ball.center();
+  ball.friction = 0;
+  ball.bounce();
+  
+  var paddle =  new sjs.Image("https://simplycoding.org/files/Game Design/Pong/Images/paddle.png");
+  paddle.type = "paddle";
+  paddle.setSize(100,40);
+  paddle.bottom();
+
+  ball.pushDown(10);
+
+  sjs.keyDown(LEFT_KEY,function(){
+      paddle.pushLeft();
+  });
+
+  sjs.keyDown(RIGHT_KEY,function(){
+    paddle.pushRight();
+  });
+
+  sjs.onHit("ball","paddle", function(x,y){
+    sjs.bounceOff(x,y);
+    var yo = new sjs.Image("");
+    yo.setSize(300,300);
+    yo.center();
+    yo.node.style.backgroundColor = "green";
+    yo.node.style.border = "12px solid yellow";
+    yo.node.style.borderRadius = "50%";
+      setTimeout(function(){
+        yo.destroy();
+      },250);
+  }); } //end function start
+  
+
+
+
+</script> 
+</head> 
+<body onload="start()"> 
+<p style="color:blue;font-weight:bold;text-align:center;font-size:18px">Problem: The Ball and Paddle can't move!<br> All because of a misplaced bracket!</p>
+<p><b>function start()</b> is closing way too early, nothing below it's closing bracket can run!?!
+</p>
+<b style="color:orange">Activity:</b><br>
+Put the closing bracket of the start function in the right place.
+<br><br>
+<b style="color:brown">Hint:</b>
+<br>
+Move the bracket from line 22 to go after all the JavaScript code.
+ <br><br>
+<div id="target" style="margin:auto;background:black;"></div> 
+</body> 
+</html>
+
+
+  
+
+
+  
